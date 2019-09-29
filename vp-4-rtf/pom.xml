@@ -96,7 +96,7 @@
 	</build>
 	<distributionManagement>
 		<repository>
-			<id>ExchangeRepo</id>
+			<id>ExchangeRepo1</id>
 			<name>Corporate Repo</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v1/organizations/${groupId}/maven</url>
 			<layout>default</layout>
