@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ce4ffddb-fcc7-452c-bc60-dfb6e33f99f6" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="71dc6f77-b0ff-48ea-8956-52c8fa861ba7" file="app-${env}.yaml" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="3563b92f-7369-4368-a485-e654b7a94fee" file="app-${env}.yaml" key="${key}" />
+	<flow name="vp-secure-apiFlow" doc:id="6e4b02db-96a8-4ca2-a966-e7b1ce8caa5b" >
+		<http:listener doc:name="Listener" doc:id="c33a0888-c1df-45fa-a6f0-bc4ff19a2ac2" config-ref="HTTP_Listener_config" path="/sp"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d18602ad-6aed-460e-be4b-5a8fcfbd7f52" message="Secure Property"/>
+		<set-payload value="#[p('secure::message')]" doc:name="Set Payload" doc:id="77f35e45-eb27-46e2-ab7a-f5b2a7297876" />
+	</flow>
+</mule>
