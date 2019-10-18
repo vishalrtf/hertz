@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<configuration-properties doc:name="Configuration properties" doc:id="2dbb6db0-111b-4b3c-9f20-31ae37da37ca" file="app-${env}.yaml" />
 	<flow name="vp-4-rtfFlow" doc:id="d512c040-c4d0-480d-9034-e31184a2fbe7" >
 		<http:listener doc:name="Listener" doc:id="98a6d79e-eaf5-4733-8bf6-c960b857e1a9" config-ref="HTTP_Listener_config" path="/rtf"/>
-		<logger level="INFO" doc:name="Logger" doc:id="0de39172-d461-4e7e-a1cd-40e3d1300f25" message="I am here"/>
+		<logger level="INFO" doc:name="Logger" doc:id="0de39172-d461-4e7e-a1cd-40e3d1300f25" message="I am here SSL"/>
 		<http:request method="GET" doc:name="Request" doc:id="e018b45e-ada4-48b0-97b4-98bbc137b705" config-ref="HTTP_Request_configuration" path="/a"/>
 		<set-payload doc:name="Set Payload" doc:id="8c5f2be3-ec0a-421c-9bb5-d1ace058f1e2" value="#[p('message')]"/>
 	</flow>
