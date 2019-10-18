@@ -87,7 +87,7 @@
 					<deploymentSettings>
 						<publicUrl>https://${mule.cn}/${artifactId}</publicUrl>     
 						<cpuReserved>500m</cpuReserved>
-						<memoryReserved>500Mi</memoryReserved>
+						<memoryReserved>1200Mi</memoryReserved>
 					</deploymentSettings>
 				   </runtimeFabricDeployment>
 				</configuration>
