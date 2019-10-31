@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<http:listener-connection host="${http.host}" port="${http.port}" />
 	</http:listener-config>
 	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="c7b2b3a0-01a6-4e3d-a59d-3e389022433c" >
-		<http:request-connection protocol="HTTPS" host="www.google.com" port="443"/>
+		<http:request-connection protocol="HTTPS" host="vp.com" port="443"/>
 	</http:request-config>
 	<configuration-properties doc:name="Configuration properties" doc:id="2dbb6db0-111b-4b3c-9f20-31ae37da37ca" file="app-${env}.yaml" />
 	<flow name="vp-4-rtfFlow" doc:id="d512c040-c4d0-480d-9034-e31184a2fbe7" >
