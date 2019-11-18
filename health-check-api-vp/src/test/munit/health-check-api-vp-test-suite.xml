@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="health-check-api-vp-test-suite.xml" />
+	<munit:test name="health-check-api-vp-test-suite-health-check-api-vpFlowTest" doc:id="2f112111-15a7-4de3-95ea-ffafc1d28968" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to health-check-api-vpFlow" doc:id="18b07a22-0d1b-4045-9729-041e486f5de9" name="health-check-api-vpFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="8cab767c-ae1a-4530-b3e5-94935ec5837f" actual='#["All1 Good"]' expected='#["All Good"]' message="Payload is Good"/>
+		</munit:validation>
+	</munit:test>
+
+</mule>
