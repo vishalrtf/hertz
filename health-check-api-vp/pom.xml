@@ -1,37 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
-	<artifactId>health-check-api-vp</artifactId>
+    <groupId>${groupId}</groupId>
+    <artifactId>health-check-api-vp</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
 
-	<name>health-check-api-vp</name>
+    <name>health-check-api-vp</name>
 
     <properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.2.1</app.runtime>
-		<mule.maven.plugin.version>3.2.7</mule.maven.plugin.version>
-	</properties>
+        <app.runtime>4.2.1</app.runtime>
+        <mule.maven.plugin.version>3.3.2</mule.maven.plugin.version>
+    </properties>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <profiles>
+     <profile>
+        <id>cloudhub</id>
+        <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mule.tools.maven</groupId>
+                <artifactId>mule-maven-plugin</artifactId>
+                <version>${mule.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <cloudHubDeployment>
+                        <uri>https://anypoint.mulesoft.com</uri>
+                        <username>${anypoint.username}</username>
+                        <password>${anypoint.password}</password>
+                        <muleVersion>4.2.1</muleVersion>
+                        <environment>Sandbox</environment>
+                        <applicationName>hz-${project.artifactId}</applicationName>
+                        <workers>1</workers>
+                        <workerType>MICRO</workerType>
+                    </cloudHubDeployment>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+        </build>
+     </profile>
+   
+     <profile>
+       <id>rtf</id>
+        <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mule.tools.maven</groupId>
+                <artifactId>mule-maven-plugin</artifactId>
+                <version>${mule.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                   <runtimeFabricDeployment>
+                    <uri>https://anypoint.mulesoft.com</uri>
+                    <muleVersion>${mule.version}</muleVersion>
+                    <username>${anypoint.username}</username>
+                    <password>${anypoint.password}</password>
+                    <applicationName>${artifactId}</applicationName>
+                    <target>${mule.target}</target>
+                    <environment>${mule.environment}</environment>
+                    <businessGroup>${mule.businessGroup}</businessGroup>        
+                    <provider>MC</provider>
+                    <properties>
+                        <env>qa</env>
+                    </properties>
+                    <deploymentSettings>
+                        <publicUrl>https://${mule.cn}/${artifactId}</publicUrl>     
+                        <cpuReserved>500m</cpuReserved>
+                        <memoryReserved>1200Mi</memoryReserved>
+                    </deploymentSettings>
+                   </runtimeFabricDeployment>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>ExchangeRepo</id>
+            <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/${groupId}/maven</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
+   </profile>
+</profiles> 
 
-	<dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.mule.connectors</groupId>
             <artifactId>mule-http-connector</artifactId>
@@ -44,9 +117,9 @@
             <version>1.1.5</version>
             <classifier>mule-plugin</classifier>
         </dependency>
-	</dependencies>
+    </dependencies>
 
-	<repositories>
+    <repositories>
           <repository>
             <id>anypoint-exchange</id>
             <name>Anypoint Exchange</name>
