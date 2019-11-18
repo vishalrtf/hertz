@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c8223341-dca6-4323-a57d-2db128bf1b29" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="9bac653f-05da-4f8a-8491-b255c52cfe14" file="app-properties.yaml" />
+	<flow name="health-check-api-vpFlow" doc:id="ff5b5510-7f7a-47c1-93b9-4c599f61f5dd" >
+		<http:listener doc:name="Listener" doc:id="9a0270ed-2218-410e-a933-aca20ee21295" config-ref="HTTP_Listener_config" path="/api/check"/>
+		<set-payload value='#["All Good"]' doc:name="Set Payload" doc:id="97af8a57-0332-44bc-a574-2d17c0aa28f1" />
+	</flow>
+</mule>
