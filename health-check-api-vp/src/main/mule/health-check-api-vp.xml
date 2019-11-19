@@ -8,6 +8,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<http:listener-connection host="${http.host}" port="${http.port}" />
 	</http:listener-config>
 	<configuration-properties doc:name="Configuration properties" doc:id="9bac653f-05da-4f8a-8491-b255c52cfe14" file="app-properties.yaml" />
+	<api-gateway:autodiscovery apiId="15883574" doc:name="API Autodiscovery" doc:id="7a3694d7-1d8d-4f31-a113-b3873fc1da19" flowRef="health-check-api-vpFlow" />
 	<flow name="health-check-api-vpFlow" doc:id="ff5b5510-7f7a-47c1-93b9-4c599f61f5dd" >
 		<http:listener doc:name="Listener" doc:id="9a0270ed-2218-410e-a933-aca20ee21295" config-ref="HTTP_Listener_config" path="/api/check"/>
 		<set-payload value='#["All Good"]' doc:name="Set Payload" doc:id="97af8a57-0332-44bc-a574-2d17c0aa28f1" />
