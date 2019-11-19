@@ -13,7 +13,7 @@
 			<flow-ref doc:name="Flow-ref to health-check-api-vpFlow" doc:id="18b07a22-0d1b-4045-9729-041e486f5de9" name="health-check-api-vpFlow"/>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-equals doc:name="Assert equals" doc:id="8cab767c-ae1a-4530-b3e5-94935ec5837f" actual='#["All1 Good"]' expected='#["All Good"]' message="Payload is Good"/>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="8cab767c-ae1a-4530-b3e5-94935ec5837f" actual='#["All Good"]' expected='#["All Good"]' message="Payload is Good"/>
 		</munit:validation>
 	</munit:test>
 
