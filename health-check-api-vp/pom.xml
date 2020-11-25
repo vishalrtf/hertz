@@ -5,7 +5,7 @@
 
     <groupId>ec5118c3-a2d8-42e6-ae8f-9527ab525b69</groupId>
     <artifactId>health-check-api-vp</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.7-SNAPSHOT</version>
     <packaging>mule-application</packaging>
 
     <name>health-check-api-vp</name>
